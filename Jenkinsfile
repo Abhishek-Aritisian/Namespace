@@ -3,7 +3,6 @@ pipeline {
     tools{
         maven 'maven'
     }
-    
     stages{
         stage('Build Maven'){
             steps{
@@ -39,6 +38,11 @@ pipeline {
          stage('Deploy to K8s'){
             steps{
                 script{
+                    def namespace = 'dev'
+                    def deploymentFile = 'deploymentservice.yaml'
+                    
+                    sh "kubectl create namespace ${namespace}"
+                    sh "kubectl apply -f ${deploymentFile} -n ${namespace}"
                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'kubernetes')
                 }
             }
