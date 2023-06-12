@@ -28,13 +28,6 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis Stage') {
-            steps{
-                withSonarQubeEnv('sonar') { 
-                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-test"
-                }
-            }
-        }
          stage('Deploy to K8s'){
             steps{
                 script{
