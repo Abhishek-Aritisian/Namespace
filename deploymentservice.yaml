@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment # Kubernetes resource kind we are creating
 metadata:
   name: spring-boot-k8s-deployment
+  namespace: dev
 spec:
   selector:
     matchLabels:
@@ -25,6 +26,7 @@ apiVersion: v1
 kind: Service 
 metadata: 
   name: springboot-k8ssvc
+  namespace: dev
 spec:
   type: NodePort
   selector:
