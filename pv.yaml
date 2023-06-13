@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: multistage-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: static
+  hostPath:
+    path: /opt/multistage
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: multistage-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: static
+  resources:
+    requests:
+      storage: 1Gi
