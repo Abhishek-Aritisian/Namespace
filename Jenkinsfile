@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Build docker image'){
             steps{
+                //  sh 'kubectl apply -f pv.yaml'
                 script{
                     sh 'docker build -t abhishekp006/kubernetes:$BUILD_NUMBER .'
                 }
@@ -30,6 +31,8 @@ pipeline {
         }
          stage('Deploy to K8s'){
             steps{
+                 //  sh 'kubectl apply -f pv.yaml'
+                //    sh 'kubectl set image deploy/multistage multistage=public.ecr.aws/g5i1d7r1/navya114:1.0.$BUILD_NUMBER'
                 script{
                     def namespace = 'dev'
                     def deploymentFile = 'deploymentservice.yaml'
