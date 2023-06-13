@@ -19,6 +19,15 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
+#        volumeMounts: 
+#       - name: volume-pv
+#          mountPath: /usr/local/tomcat/webapps
+#     volumes: 
+#     - name: volume-pv
+#       persistentVolumeClaim:
+#         claimName: multistage-pvc
+      imagePullSecrets:      
+      - name: regcred
 
 
 ---
